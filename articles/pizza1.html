@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />      
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="comments.css" rel="stylesheet" type="text/css">
+<link href="style.css" rel="stylesheet" type="text/css">
+
+
+</head>
+</body>
+
+<div class="topnav">
+  <a href="http://durpidurpi.com/">Home</a>
+  <a href="http://durpidurpi.com/articles/articles.html">Articles</a>  
+  </div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="column-66">
+     <h1 class="xlarge-font"><b>This is</b></h1>
+      <h1 class="large-font" style="color:red;"><b>bananas</b></h1>
+      <p><span style="font-size:24px">P I Z Z A.</span>PIZZA PIZZA PIZZA</p>
+     
+     <p>Pizza is a savory dish of Italian origin consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and often various other ingredients (such as anchovies, mushrooms, onions, olives, pineapple, meat, etc.) which is then baked at a high temperature, traditionally in a wood-fired oven. A small pizza is sometimes called a pizzetta. A person who makes pizza is known as a pizzaiolo.</p>   
+    </div>
+    <div class="column-33">
+        <img src="img/pizza.jpg" width="535" height="671" >
+    </div>
+  </div>
+</div>
+
+<div class="comments"></div>
+
+
+<script>
+const comments_page_id = 2; // This number should be unique on every page
+fetch("comments.php?page_id=" + comments_page_id).then(response => response.text()).then(data => {
+	document.querySelector(".comments").innerHTML = data;
+	document.querySelectorAll(".comments .write_comment_btn, .comments .reply_comment_btn").forEach(element => {
+		element.onclick = event => {
+			event.preventDefault();
+			document.querySelectorAll(".comments .write_comment").forEach(element => element.style.display = 'none');
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "']").style.display = 'block';
+			document.querySelector("div[data-comment-id='" + element.getAttribute("data-comment-id") + "'] input[name='name']").focus();
+		};
+	});
+	document.querySelectorAll(".comments .write_comment form").forEach(element => {
+		element.onsubmit = event => {
+			event.preventDefault();
+			fetch("comments.php?page_id=" + comments_page_id, {
+				method: 'POST',
+				body: new FormData(element)
+			}).then(response => response.text()).then(data => {
+				element.parentElement.innerHTML = data;
+			});
+		};
+	});
+});
+</script>
+
+</body>
+</html>
