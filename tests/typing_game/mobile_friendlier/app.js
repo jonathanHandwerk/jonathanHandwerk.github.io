@@ -20,11 +20,16 @@ const kanjiList = [
 "体験",
 "反対票",
 "投じる",
-"機能",
 "害",
 "対策",
 "挙"]
-const yomiList = ["どうにゅう", "せきにんしゃ","けんとう", "あきらかにする","きのう","かいはつ",
+const yomiList = [
+"どうにゅう", 
+"せきにんしゃ",
+"けんとう", 
+"あきらかにする",
+"きのう",
+"かいはつ",
 "げんじつ",
 "ようぼう",
 "そしき-てき",
@@ -36,7 +41,6 @@ const yomiList = ["どうにゅう", "せきにんしゃ","けんとう", "あ�
 "たいけん",
 "はんたい ひょう",
 "とうじる",
-"きのう",
 "がい",
 "たいさく",
 "きょ",]
@@ -204,6 +208,7 @@ function myFunction()
        // sentence.innerHTML = sentenceList[randomNum];
         english.innerHTML = englishList[randomNum];
         //extravocab.innerHTML = extraVocabList[randomNum];
+        input.value = "";
 
 
         }else{
@@ -216,7 +221,8 @@ function myFunction()
         english.innerHTML = englishList[randomNum];
        // sentence.innerHTML = sentenceList[randomNum];
         //extravocab.innerHTML = extraVocabList[randomNum];
-
+        input.value = "";
+        
 
         
         }
@@ -243,11 +249,3 @@ input.addEventListener("keyup", function(event){
 
 
 });
-
-
-
-
-
-
-
-
