@@ -1,106 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/navbar.css" rel="stylesheet" type="text/css">
-<style>
-.parallax {
-  /* The image used */
-  background-image: url("img/wave.jpg");
-
-  /* Set a specific height */
-  min-height: 500px; 
-
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.parallax2 {
-  /* The image used */
-  background-image: url("img/baba.jpg");
-
-  /* Set a specific height */
-  min-height: 500px; 
-
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/navbar.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="JS/parallax/parallax.js"></script>
+    <title>Document</title>
 </head>
 <body>
-
-<!-- 3 line sidenav-->
+    <!-- 3 line sidenav-->
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="projects/index.html">projects</a>
-  <a href="articles/index.html">Articles</a>
-  <a href="tests/index.html">Tests</a>
- 
- 
-</div>
-
-<div id="main">
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-</div>
-
-<!--nav toggle functionality-->
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
-</script>
-<!-- end 3 line sidenav-->
-
-
-
-<div class="parallax"></div>
-
-<div style="height:300px;background-color:orange;font-size:100px">
-Waves, Waves, Waves
-<div style= "font-size: 36px">
-
-<div class="parallax"></div>
-
-<div style="height:300px;background-color:orange;font-size:100px">
-Dreaming about waves?
-<div style= "font-size: 36px">
-<p>W A V E S:  <a style="color: black;" href="stories/baba.html">find waves</a></p> 	
-
-<div class="parallax"></div>
-
-<div style="height:300px;background-color:orange;font-size:100px">
-Still dreaming about Waves?
-<div style= "font-size: 36px">
-<p>Waaaaaaaavessssssssss? <a style="color: black;" href="stories/baba.html">find more waves...</a></p> 	
-
-<div class="parallax2"></div>
-<div class="parallax2"></div>
-
-<div style="height:300px;background-color:orange;font-size:100px">
-Dreaming about BABA...
-<div style= "font-size: 36px">
-<p>Dont Know what BABA is? <a style="color: black;" href="stories/baba.html">find Out</a></p> 	
-</div>
-</div>
-
-<div class="parallax2"></div>
-<div class="parallax2"></div>
-
-
-
-
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="projects/index.html">Projects</a>
+    <a href="articles/index.html">Articles</a>
+    <a href="tests/index.html">Tests</a>
+   
+   
+  </div>
+  
+  <div id="main">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+  </div>
+  
+  <!--nav toggle functionality-->
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  </script>
+  <!-- end 3 line sidenav-->
+    <div class="parallax-window" data-parallax="scroll" data-image-src="img2/wave.jpg">
+    <p>Hello</p>
+    </div>
+    <div class="parallax-window" data-parallax="scroll" data-image-src="img2/baba.jpg">
+    <p>I said hello</p>
+    </div>
+    <div class="parallax-window" data-parallax="scroll" data-image-src="img2/fern.jpg">
+    <p class="p2">is this the only place you thought to go</p>
+    </div>
 </body>
 </html>

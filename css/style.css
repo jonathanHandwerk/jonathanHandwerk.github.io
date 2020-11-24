@@ -1,0 +1,17 @@
+.parallax-window {
+    min-height: 600px;
+    background: transparent;
+    padding: 70px 0;
+}
+p{
+    font-size: 30px;
+    color: black;
+    width: 30%;
+    text-align: center;
+    background-color: brown;
+    opacity: .9;
+    border-radius: 8px;
+}
+p.p2{
+    text-align: center;
+}
