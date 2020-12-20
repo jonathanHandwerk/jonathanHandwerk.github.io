@@ -241,9 +241,9 @@ input.addEventListener("keyup", function(event){
     randomNum = randomNumber();
     extravocab.innerHTML = extraVocabList[randomNum].one+"<br> "+extraVocabList[randomNum].two+"<br>"+extraVocabList[randomNum].three;
     kanji.innerHTML = kanjiList[randomNum];
-    result.innerHTML = (".")
-    correction.innerHTML = (".");
-    english.innerHTML = (".");
+    result.innerHTML = ("&nbsp;")
+    correction.innerHTML = ("&nbsp;");
+    english.innerHTML = ("&nbsp;");
     //sentence.innerHTML = (".");
     //extravocab.innerHTML = (".");
 
