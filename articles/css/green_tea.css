@@ -64,3 +64,8 @@ hr {
   line-height: 60px;
   color: #555;
 }
+@media screen and (max-width: 1000px) {
+  .container {
+    display: flex;
+  }
+}
