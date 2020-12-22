@@ -70,5 +70,9 @@ hr {
   }
   .container {
     display: flex;
+    padding: 0px;
+  }
+  img {
+    margin: auto;
   }
 }
