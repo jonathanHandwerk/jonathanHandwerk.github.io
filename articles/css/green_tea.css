@@ -79,6 +79,7 @@ img {
   }
   p {
     font-size: 15px;
+    width: 345px;
   }
   .container {
     display: flex;
@@ -87,5 +88,10 @@ img {
   img {
     float: none;
     margin: auto;
+  }
+  .imgleft {
+    float: none;
+    width: 345px;
+    padding: 5px;
   }
 }
