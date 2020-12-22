@@ -76,3 +76,50 @@ hr {
   margin-left: auto;
   margin-right: auto;
 }
+@media screen and (max-width: 1000px) {
+  body {
+    margin: auto;
+  }
+  article {
+    margin: auto;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  header {
+    font-size: 40px;
+    margin-top: 0px;
+    /* margin-left: 50px; */
+    margin-right: 0px;
+    font-family: "Russo One", sans-serif;
+    color: rgb(214, 24, 24);
+  }
+  h1 {
+    font-size: 30px;
+  }
+  p {
+    font-size: 15px;
+    width: 345px;
+  }
+  .container {
+    display: flex;
+    padding: 0px;
+  }
+  img {
+    float: none;
+    margin: auto;
+    width: 345px;
+    padding: 5px;
+  }
+  .imgleft {
+    float: none;
+    width: 345px;
+    padding: 5px;
+  }
+  .underline {
+    width: 200px;
+  }
+  .imgcenter {
+    width: 345px;
+    height: 140px;
+  }
+}
