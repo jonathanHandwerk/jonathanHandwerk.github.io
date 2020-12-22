@@ -66,6 +66,17 @@ img {
     margin-left: 0px;
     margin-right: 0px;
   }
+  header {
+    font-size: 40px;
+    margin-top: 0px;
+    /* margin-left: 50px; */
+    margin-right: 0px;
+    font-family: "Russo One", sans-serif;
+    color: rgb(214, 24, 24);
+  }
+  p {
+    font-size: 15px;
+  }
   .container {
     display: flex;
     padding: 0px;
