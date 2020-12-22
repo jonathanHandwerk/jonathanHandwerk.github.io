@@ -74,6 +74,9 @@ img {
     font-family: "Russo One", sans-serif;
     color: rgb(214, 24, 24);
   }
+  h1 {
+    font-size: 30px;
+  }
   p {
     font-size: 15px;
   }
@@ -82,6 +85,7 @@ img {
     padding: 0px;
   }
   img {
+    float: none;
     margin: auto;
   }
 }
