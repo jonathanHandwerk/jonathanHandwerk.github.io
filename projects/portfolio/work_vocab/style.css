@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: #f1f5f8;
+  color: #222;
+}
+.quizlist {
+  margin: 5rem auto;
+  margin-top: 20px;
+  display: grid;
+  gap: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .quizlist {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: blue;
+}
+.quiz {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+.quiz h1 {
+  margin-top: 0.5rem;
+  font-size: 40px;
+  width: 400px;
+}

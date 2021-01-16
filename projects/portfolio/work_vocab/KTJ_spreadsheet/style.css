@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  font-family: "Noto Serif JP";
+  font-size: 20px;
+}
+body {
+  /* background-color: rgb(49, 47, 47); */
+  background-image: url(leaves.jpg);
+}
+
+.flex-container {
+  margin-top: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  text-align: center;
+  height: 500px;
+  opacity: 0.9;
+}
+
+.flex-item-left {
+  background-color: rgba(92, 89, 89, 0.733);
+  padding: 10px;
+  flex: 20%;
+  /*height: 500px;*/
+}
+
+.flex-item-right {
+  background-color: rgb(99, 95, 95);
+  padding: 10px;
+  flex: 40%;
+}
+.kanji {
+  font-size: 70px;
+}
+.input {
+  width: 40%;
+}
+
+.flex-item-last {
+  background-color: rgb(134, 130, 130);
+  padding: 10px;
+  flex: 40%;
+}
+.underline {
+  width: 100px;
+  height: 10px;
+  background-color: #333;
+  margin: auto;
+}
+
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    margin-top: 0px;
+  }
+  .flex-item-right,
+  .flex-item-left,
+  .flex-item-last {
+    flex: 100%;
+  }
+}
