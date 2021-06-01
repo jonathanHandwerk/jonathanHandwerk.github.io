@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>kaboom</title>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+<script src="https://kaboomjs.com/lib/0.5.0/kaboom.js"></script>
+<script src="https://kaboomjs.com/lib/0.5.0/plugins/aseprite.js"></script>
+<script src="https://kaboomjs.com/lib/0.5.0/plugins/pedit.js"></script>
+<script src="https://kaboomjs.com/pub/legacy/kbmsprite.js"></script>
+
+  <script>
+
+kaboom({
+  ...{"fullscreen":true,"width":240,"height":240,"scale":2,"startScene":"main","version":"0.5.0"},
+  global: true,
+  plugins: [ peditPlugin, asepritePlugin, kbmspritePlugin ],
+});
+loadKbmsprite("enemy", "sprites/enemy.kbmsprite");
+loadKbmsprite("ground", "sprites/ground.kbmsprite");
+loadKbmsprite("helloBobby", "sprites/helloBobby.kbmsprite");
+loadKbmsprite("helloBurrito", "sprites/helloBurrito.kbmsprite");
+scene("main", (args = {}) => {
+
+const moveSpeed = 100
+const player = add([
+  sprite('helloBobby'),
+  scale(0.8),
+  pos(20, 20),
+  body()
+])
+
+keyDown('right', () => {
+  player.move(moveSpeed, 0)
+})
+keyDown('left', () => {
+  player.move(-moveSpeed, 0)
+})
+
+addLevel([
+  '     ',
+  '     ',
+  '    @ ',
+  'xxxxxxx',
+  ], {
+   width: 40,
+   height: 40,
+   'x' : [sprite('ground'), solid()],
+   '@' : [sprite('enemy'), scale(1.5), 'dangerous']
+  })
+
+  player.collides('dangerous', () => {
+    destroy(player)
+  })
+});
+start("main");
+
+  </script>
+</body>
+
+</html>
