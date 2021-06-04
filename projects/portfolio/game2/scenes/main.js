@@ -7,6 +7,13 @@ const player = add([
   body()
 ])
 
+const player2 = add([
+  sprite('chairColor2'),
+  scale(0.7),
+  pos(10, 10),
+  body()
+])
+
 keyDown('right', () => {
   player.move(moveSpeed, 0)
 })

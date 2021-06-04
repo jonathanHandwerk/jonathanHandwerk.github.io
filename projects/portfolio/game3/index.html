@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>kaboom</title>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+<script src="https://kaboomjs.com/lib/0.5.0/kaboom.js"></script>
+<script src="https://kaboomjs.com/lib/0.5.0/plugins/aseprite.js"></script>
+<script src="https://kaboomjs.com/lib/0.5.0/plugins/pedit.js"></script>
+<script src="https://kaboomjs.com/pub/legacy/kbmsprite.js"></script>
+
+  <script>
+
+kaboom({
+  ...{"fullscreen":true,"width":240,"height":240,"scale":2,"startScene":"main","debug":true,"clearColor":[0.6784313725490196,0.9411764705882353,0.9372549019607843,1],"version":"0.5.0"},
+  global: true,
+  plugins: [ peditPlugin, asepritePlugin, kbmspritePlugin ],
+});
+loadKbmsprite("Panario", "sprites/Panario.kbmsprite");
+loadKbmsprite("bikuri", "sprites/bikuri.kbmsprite");
+loadKbmsprite("ground", "sprites/ground.kbmsprite");
+loadKbmsprite("gyaku", "sprites/gyaku.kbmsprite");
+loadKbmsprite("question", "sprites/question.kbmsprite");
+scene("main", (args = {}) => {
+layers(['obj', 'ui'], 'obj')
+
+const map = [
+  '                     ',
+  '                     ',
+  '                     ',
+  '                     ',
+  '                     ',
+  '     ?       !       ',
+  '                     ',
+  '                     ',
+  'xxxxxxxxxxxxxxxxxxxxx',
+  ]
+
+const levelCfg = {
+  width: 20,
+  height: 20,
+  'x': [sprite('ground'), solid()],
+  '*': [sprite('Panario')],
+  '?': [sprite('question'), solid(), scale(0.8)],
+  '!': [sprite('bikuri'), solid(), scale(0.8)],
+}
+
+addLevel(map, levelCfg)
+
+const scoreLabel = add([
+  text('0'),
+  pos(30,6),
+  layer('ui'),
+  {
+    value: '0',
+  }
+])
+
+add([text('level ' + '0'), pos(40, 6)])
+
+const player = add([
+  sprite('Panario'), 
+  pos(30,0),
+  body()
+]) 
+
+const MOVE_SPEED = 90
+const JUMP_FORCE = 200
+
+keyDown('left', ()=> {
+  player.move(-MOVE_SPEED, 0)
+})
+keyDown('right', ()=> {
+  player.move(MOVE_SPEED, 0)
+})
+keyPress('space', ()=> {
+  if(player.grounded())
+  player.jump(JUMP_FORCE)
+})
+
+});
+start("main");
+
+  </script>
+</body>
+
+</html>
