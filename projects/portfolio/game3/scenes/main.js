@@ -6,7 +6,7 @@ const map = [
   '                     ',
   '                     ',
   '                     ',
-  '     ?       !       ',
+  '     ?   !    !       ',
   '                     ',
   '                     ',
   'xxxxxxxxxxxxxxxxxxxxx',
@@ -17,11 +17,13 @@ const levelCfg = {
   height: 20,
   'x': [sprite('ground'), solid()],
   '*': [sprite('Panario')],
-  '?': [sprite('question'), solid(), scale(0.8)],
-  '!': [sprite('bikuri'), solid(), scale(0.8)],
+  '?': [sprite('question'), 'question-mark', solid(), scale(0.8)],
+  '!': [sprite('bikuri'), 'hamburg-surprise', solid(), scale(0.8)],
+  '%': [sprite('hamburg'), 'hamburg', body()],
+  '+': [sprite('gyaku'), 'gyaku', body()],
 }
 
-addLevel(map, levelCfg)
+const gameLevel = addLevel(map, levelCfg)
 
 const scoreLabel = add([
   text('0'),
@@ -34,10 +36,42 @@ const scoreLabel = add([
 
 add([text('level ' + '0'), pos(40, 6)])
 
+function big() {
+   let timer = 0
+   let isBig = false
+   return {
+      update() {
+          if (isBig) {
+              timer -=dt ()
+              if (timer <=0) {
+	              this.smallify()
+}
+}
+},
+isBig() {
+ return isBig
+},
+smallify() {
+   this.scale = vec2(1)
+   timer = 0
+   isBig = false
+},
+biggify(time) {
+   this.scale = vec2(1.5)
+   timer = time
+   isBig = true
+}        
+}
+}
+
+
+
 const player = add([
   sprite('Panario'), 
   pos(30,0),
-  body()
+  body(),
+  big(),
+  origin('bot')
 ]) 
 
 const MOVE_SPEED = 90
@@ -53,3 +87,17 @@ keyPress('space', ()=> {
   if(player.grounded())
   player.jump(JUMP_FORCE)
 })
+player.on('headbump', (obj) => {
+  if(obj.is('hamburg-surprise')) {
+    gameLevel.spawn('%', obj.gridPos.sub(0,1))
+    
+  }})
+
+action('hamburg', (h)=> {
+    h.move(20, 0)
+})
+player.collides('hamburg', (h) => {
+  player.biggify(6)
+  destroy(h)
+})
+
