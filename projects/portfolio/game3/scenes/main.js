@@ -13,7 +13,7 @@ const map = [
   '     ?   !    !       ',
   '                     ',
   '                     ',
-  'xxxxxxxxxxxxxxxxxxxxx',
+  'xxxxxxxxxxxxxxxxxxxxxxxxx',
   ]
 
 const levelCfg = {
@@ -21,10 +21,10 @@ const levelCfg = {
   height: 20,
   'x': [sprite('ground'), solid()],
   '*': [sprite('Panario')],
-  '?': [sprite('question'), 'gyaku', solid(), scale(0.8)],
+  '?': [sprite('question'), 'gyaku-surprise', solid(), scale(0.8)],
   '!': [sprite('bikuri'), 'hamburg-surprise', solid(), scale(0.8)],
   '%': [sprite('hamburg'), 'hamburg', body()],
-  '+': [sprite('gyaku'), 'gyaku', body()],
+  '+': [sprite('gyaku'), 'gyaku', body(), scale(0.7)],
 }
 
 const gameLevel = addLevel(map, levelCfg)
@@ -93,14 +93,26 @@ keyPress('space', ()=> {
 player.on('headbump', (obj) => {
   if(obj.is('hamburg-surprise')) {
     gameLevel.spawn('%', obj.gridPos.sub(0,1))
-    
+  }
+  if(obj.is('gyaku-surprise')) {
+    gameLevel.spawn('+', obj.gridPos.sub(0,1))
   }})
+  
 
 action('hamburg', (h)=> {
     h.move(20, 0)
 })
+action('gyaku', (g)=> {
+    g.move(20, 0)
+})
 player.collides('hamburg', (h) => {
   player.biggify(6)
   destroy(h)
+})
+
+player.collides('gyaku', (g) => {
+  scoreLabel.value++
+  scoreLabel.text = scoreLabel.value
+  destroy(g)
 })
 
