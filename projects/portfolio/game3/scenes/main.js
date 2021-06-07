@@ -1,3 +1,7 @@
+const MOVE_SPEED = 90
+const JUMP_FORCE = 200
+let CURRENT_JUMP_FORCE = JUMP_FORCE
+const BIG_JUMP = 500
 layers(['obj', 'ui'], 'obj')
 
 const map = [
@@ -55,11 +59,13 @@ smallify() {
    this.scale = vec2(1)
    timer = 0
    isBig = false
+   CURRENT_JUMP_FORCE = JUMP_FORCE
 },
 biggify(time) {
    this.scale = vec2(1.5)
    timer = time
    isBig = true
+   CURRENT_JUMP_FORCE = BIG_JUMP
 }        
 }
 }
@@ -74,9 +80,6 @@ const player = add([
   origin('bot')
 ]) 
 
-const MOVE_SPEED = 90
-const JUMP_FORCE = 200
-
 keyDown('left', ()=> {
   player.move(-MOVE_SPEED, 0)
 })
@@ -85,16 +88,13 @@ keyDown('right', ()=> {
 })
 keyPress('space', ()=> {
   if(player.grounded())
-  player.jump(JUMP_FORCE)
+  player.jump(CURRENT_JUMP_FORCE)
 })
 player.on('headbump', (obj) => {
   if(obj.is('hamburg-surprise')) {
     gameLevel.spawn('%', obj.gridPos.sub(0,1))
-}
-if(obj.is('gyaku')) {
-    gameLevel.spawn('+', obj.gridPos.sub(0,1))
-}})
-
+    
+  }})
 
 action('hamburg', (h)=> {
     h.move(20, 0)
@@ -102,9 +102,5 @@ action('hamburg', (h)=> {
 player.collides('hamburg', (h) => {
   player.biggify(6)
   destroy(h)
-})
-player.collides('gyaku', (g) => {
-  scoreLabel.value++
-  scoreLabel.text = scoreLabel.value
 })
 
