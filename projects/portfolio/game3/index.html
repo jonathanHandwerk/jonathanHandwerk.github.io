@@ -43,6 +43,10 @@
     loadKbmsprite("hamburg", "sprites/hamburg.kbmsprite");
     loadKbmsprite("question", "sprites/question.kbmsprite");
     scene("main", (args = {}) => {
+      const MOVE_SPEED = 90
+      const JUMP_FORCE = 200
+      let CURRENT_JUMP_FORCE = JUMP_FORCE
+      const BIG_JUMP = 500
       layers(['obj', 'ui'], 'obj')
 
       const map = [
@@ -54,7 +58,7 @@
         '     ?   !    !       ',
         '                     ',
         '                     ',
-        'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+        'xxxxxxxxxxxxxxxxxxxxx',
       ]
 
       const levelCfg = {
@@ -100,11 +104,13 @@
             this.scale = vec2(1)
             timer = 0
             isBig = false
+            CURRENT_JUMP_FORCE = JUMP_FORCE
           },
           biggify(time) {
             this.scale = vec2(1.5)
             timer = time
             isBig = true
+            CURRENT_JUMP_FORCE = BIG_JUMP
           }
         }
       }
@@ -119,9 +125,6 @@
         origin('bot')
       ])
 
-      const MOVE_SPEED = 90
-      const JUMP_FORCE = 200
-
       keyDown('left', () => {
         player.move(-MOVE_SPEED, 0)
       })
@@ -130,12 +133,14 @@
       })
       keyPress('space', () => {
         if (player.grounded())
-          player.jump(JUMP_FORCE)
+          player.jump(CURRENT_JUMP_FORCE)
       })
       player.on('headbump', (obj) => {
         if (obj.is('hamburg-surprise')) {
           gameLevel.spawn('%', obj.gridPos.sub(0, 1))
-        }})
+
+        }
+      })
 
       action('hamburg', (h) => {
         h.move(20, 0)
