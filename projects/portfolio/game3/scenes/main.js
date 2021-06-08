@@ -2,6 +2,7 @@ const MOVE_SPEED = 90
 const JUMP_FORCE = 200
 let CURRENT_JUMP_FORCE = JUMP_FORCE
 const BIG_JUMP = 500
+const ENEMY_SPEED = 30
 layers(['obj', 'ui'], 'obj')
 
 const map = [
@@ -11,9 +12,9 @@ const map = [
   '                     ',
   '                     ',
   '     ?   !    !       ',
-  '                     ',
-  '                     ',
-  'xxxxxxxxxxxxxxxxxxxxxxxxx',
+  '                      ',
+  '         -     -      ',
+  'xxxxxxxxxxxxxxxxxxxxx',
   ]
 
 const levelCfg = {
@@ -25,6 +26,7 @@ const levelCfg = {
   '!': [sprite('bikuri'), 'hamburg-surprise', solid(), scale(0.8)],
   '%': [sprite('hamburg'), 'hamburg', body()],
   '+': [sprite('gyaku'), 'gyaku', body(), scale(0.7)],
+  '-': [sprite('gokiburi'), 'goki', solid(), 'dangerous', scale(0.2)],
 }
 
 const gameLevel = addLevel(map, levelCfg)
@@ -114,5 +116,9 @@ player.collides('gyaku', (g) => {
   scoreLabel.value++
   scoreLabel.text = scoreLabel.value
   destroy(g)
+})
+
+action('dangerous', (d) => {
+  d.move(-ENEMY_SPEED,0)
 })
 
