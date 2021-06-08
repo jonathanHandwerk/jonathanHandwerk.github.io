@@ -38,6 +38,7 @@
     });
     loadKbmsprite("Panario", "sprites/Panario.kbmsprite");
     loadKbmsprite("bikuri", "sprites/bikuri.kbmsprite");
+    loadKbmsprite("gokiburi", "sprites/gokiburi.kbmsprite");
     loadKbmsprite("ground", "sprites/ground.kbmsprite");
     loadKbmsprite("gyaku", "sprites/gyaku.kbmsprite");
     loadKbmsprite("hamburg", "sprites/hamburg.kbmsprite");
@@ -47,6 +48,7 @@
       const JUMP_FORCE = 200
       let CURRENT_JUMP_FORCE = JUMP_FORCE
       const BIG_JUMP = 500
+      const ENEMY_SPEED = 30
       layers(['obj', 'ui'], 'obj')
 
       const map = [
@@ -56,8 +58,8 @@
         '                     ',
         '                     ',
         '     ?   !    !       ',
-        '                     ',
-        '                     ',
+        '                      ',
+        '         -     -      ',
         'xxxxxxxxxxxxxxxxxxxxx',
       ]
 
@@ -70,6 +72,7 @@
         '!': [sprite('bikuri'), 'hamburg-surprise', solid(), scale(0.8)],
         '%': [sprite('hamburg'), 'hamburg', body()],
         '+': [sprite('gyaku'), 'gyaku', body(), scale(0.7)],
+        '-': [sprite('gokiburi'), 'goki', solid(), 'dangerous', scale(0.2)],
       }
 
       const gameLevel = addLevel(map, levelCfg)
@@ -162,6 +165,9 @@
         destroy(g)
       })
 
+      action('dangerous', (d) => {
+        d.move(-ENEMY_SPEED, 0)
+      })
 
     });
     start("main");
@@ -169,4 +175,4 @@
   </script>
 </body>
 
-</html>
+</html>d
