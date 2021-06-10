@@ -1,8 +1,10 @@
 const MOVE_SPEED = 90
-const JUMP_FORCE = 200
+const JUMP_FORCE = 400
 let CURRENT_JUMP_FORCE = JUMP_FORCE
 const BIG_JUMP = 500
 const ENEMY_SPEED = 30
+let isJumping = true 
+const FALL_DEATH = 600
 layers(['obj', 'ui'], 'obj')
 
 const map = [
@@ -14,7 +16,10 @@ const map = [
   '     ?   !    !       ',
   '                      ',
   '         -     -      ',
-  'xxxxxxxxxxxxxxxxxxxxx',
+  '   xxxxxxxxxxxxxxxxxxxxx       xxxxxxx',
+  '                      ',
+  '                      ',
+  'xxxx                      xxxx',
   ]
 
 const levelCfg = {
@@ -26,7 +31,7 @@ const levelCfg = {
   '!': [sprite('bikuri'), 'hamburg-surprise', solid(), scale(0.8)],
   '%': [sprite('hamburg'), 'hamburg', body()],
   '+': [sprite('gyaku'), 'gyaku', body(), scale(0.7)],
-  '-': [sprite('gokiburi'), 'goki', solid(), 'dangerous', scale(0.2)],
+  '-': [sprite('gokiburi'), 'goki', body(), solid(), 'dangerous', scale(0.15)],
 }
 
 const gameLevel = addLevel(map, levelCfg)
@@ -122,3 +127,17 @@ action('dangerous', (d) => {
   d.move(-ENEMY_SPEED,0)
 })
 
+player.collides('dangerous', (d) => {
+if(isJumping) {
+destroy(d)
+} else {
+go('lose', {score: scoreLabel.value})
+  go('lose', {score: scoreLabel.value})
+}})
+
+player.action(() => {
+camPos(player.pos)
+if(player.pos.y >= FALL_DEATH) {
+  go('lose', {score: scoreLabel.value})
+}
+})
