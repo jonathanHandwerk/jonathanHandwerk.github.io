@@ -6,8 +6,8 @@ const ENEMY_SPEED = 30
 let isJumping = true 
 const FALL_DEATH = 600
 layers(['obj', 'ui'], 'obj')
-
-const map = [
+const maps = [
+[
   '                     ',
   '                     ',
   '                     ',
@@ -15,12 +15,28 @@ const map = [
   '                     ',
   '     ?   !    !       ',
   '                      ',
-  '         -     -      ',
+  '         -     -                   @ ',
   '   xxxxxxxxxxxxxxxxxxxxx       xxxxxxx',
   '                      ',
-  '                      ',
+  ' @                     ',
   'xxxx                      xxxx',
-  ]
+ 
+], 
+[
+  '                     ',
+  '                     ',
+  '                     ',
+  '                     ',
+  '                     ',
+  '     ?   !    !       ',
+  '                      ',
+  '         -     -                   @ ',
+  '   xxxxxxxxxxxxxxxxxxxxx       xxxxxxx',
+  '                      ',
+  ' @                     ',
+  'xxxx                      xxxx',
+]
+]
 
 const levelCfg = {
   width: 20,
@@ -32,9 +48,12 @@ const levelCfg = {
   '%': [sprite('hamburg'), 'hamburg', body()],
   '+': [sprite('gyaku'), 'gyaku', body(), scale(0.7)],
   '-': [sprite('gokiburi'), 'goki', body(), solid(), 'dangerous', scale(0.15)],
+  '@': [sprite('ramen'), body(), solid(),'ramen',]
 }
 
-const gameLevel = addLevel(map, levelCfg)
+const levelIndex = args.level ?? 0 
+const gameLevel = addLevel(maps[levelIndex], levelCfg)
+// const gameLevel = addLevel(maps[0], levelCfg)
 
 const scoreLabel = add([
   text('0'),
@@ -140,4 +159,13 @@ camPos(player.pos)
 if(player.pos.y >= FALL_DEATH) {
   go('lose', {score: scoreLabel.value})
 }
+})
+
+player.collides('ramen', () => {
+  keyPress  ('down', () => {
+    go('main', {
+      level: (levelIndex +1)　% maps.length,
+      score: scoreLabel.value
+    })
+  })
 })
