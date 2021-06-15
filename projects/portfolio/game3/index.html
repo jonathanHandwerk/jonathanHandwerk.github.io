@@ -3,7 +3,7 @@
 <html>
 
 <head>
-  <title>PanOrio</title>
+  <title>kaboom</title>
   <meta charset="utf-8">
   <style>
     * {
@@ -220,9 +220,9 @@
 
       player.collides('ramen', () => {
         keyPress('down', () => {
-          go('game', {
+          go('main', {
             level: (levelIndex + 1) % maps.length,
-            // score: scoreLabel.value
+            score: scoreLabel.value
           })
         })
       })
