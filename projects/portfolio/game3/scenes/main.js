@@ -5,6 +5,7 @@ const BIG_JUMP = 500
 const ENEMY_SPEED = 30
 let isJumping = true 
 const FALL_DEATH = 600
+
 layers(['obj', 'ui'], 'obj')
 const maps = [
 [
@@ -114,7 +115,8 @@ keyDown('right', ()=> {
 })
 keyPress('space', ()=> {
   if(player.grounded())
-  player.jump(CURRENT_JUMP_FORCE)
+  isJumping = true
+  player.jump(CURRENT_JUMP_FORCE) 
 })
 player.on('headbump', (obj) => {
   if(obj.is('hamburg-surprise')) {
@@ -151,14 +153,19 @@ if(isJumping) {
 destroy(d)
 } else {
 go('lose', {score: scoreLabel.value})
-  go('lose', {score: scoreLabel.value})
 }})
+
+player.action(() => {
+  if(player.grounded()) {
+    isJumping = false
+  }
+})
 
 player.action(() => {
 camPos(player.pos)
 if(player.pos.y >= FALL_DEATH) {
   go('lose', {score: scoreLabel.value})
-}
+  }
 })
 
 player.collides('ramen', () => {
