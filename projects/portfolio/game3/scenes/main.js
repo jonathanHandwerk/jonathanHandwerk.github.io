@@ -12,30 +12,38 @@ const maps = [
   '                     ',
   '                     ',
   '                     ',
+  '         b         b   ',
   '                     ',
-  '                     ',
-  '     ?   !    !       ',
+  '     ?    !    !                     ! ?!?!?',
   '                      ',
-  '         -     -                   @ ',
-  '   xxxxxxxxxxxxxxxxxxxxx       xxxxxxx',
+  '    y     -    -    p                       p        p@',
+  'xxxxxxxxxxxxxxxxxxxxx         xxxxxxxxxxxxxxxxxxxxxxxxxxx',
   '                      ',
-  ' @                     ',
-  'xxxx                      xxxx',
+  '                      ',
+  '                        xxxx',
  
 ], 
 [
   '                     ',
   '                     ',
+  '                                           ',
+  '    b                            b       b ',
   '                     ',
-  '                     ',
-  '                     ',
-  '     ?   !    !       ',
+  '     ?   !    !              !  ! ? ?             !',
   '                      ',
-  '         -     -                   @ ',
-  '   xxxxxxxxxxxxxxxxxxxxx       xxxxxxx',
+  '         -     -                  p     -       p          @ ',
+  'IIIIIIIIIIIIIIIIIIIIII   IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII',
+],
+[
+  '                     ',
+  '                     ',
   '                      ',
-  ' @                     ',
-  'xxxx                      xxxx',
+  '   b                  ',
+  '                     ',
+  '     ?   !    !                              !!!??!?!?',
+  '                      ',
+  '         -     -             p     p                  p      @',    
+  'IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII    IIIIIIIIIIIIIIIIIIIIII',
 ]
 ]
 
@@ -43,14 +51,19 @@ const levelCfg = {
   width: 20,
   height: 20,
   'x': [sprite('ground'), solid()],
+  'I': [sprite('iceGround'), solid()],
+  'b': [sprite('building'), scale(2.5)],
   '*': [sprite('Panario')],
   '?': [sprite('question'), 'gyaku-surprise', solid(), scale(0.8)],
   '!': [sprite('bikuri'), 'hamburg-surprise', solid(), scale(0.8)],
   '%': [sprite('hamburg'), 'hamburg', body()],
   '+': [sprite('gyaku'), 'gyaku', body(), scale(0.7)],
   '-': [sprite('gokiburi'), 'goki', body(), solid(), 'dangerous', scale(0.15)],
-  '@': [sprite('ramen'), body(), solid(),'ramen',]
+  'p': [sprite('purpleMeanie'), 'purple', body(), solid(), 'dangerous'],
+  '@': [sprite('ramen'), body(), solid(),'ramen',],
+  // 'y': [sprite('froggy'), body(), solid()]
 }
+
 
 const levelIndex = args.level ?? 0 
 const gameLevel = addLevel(maps[levelIndex], levelCfg)
